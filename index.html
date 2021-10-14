@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>input-kana tag demo</title>
+</head><body>
+
+<script type="module" src="./input-kana.js"></script>
+
+<h1>input-kana tag demo</h1>
+
+<div style="display: inline-grid; grid-template-columns: 1fr 1fr 1fr;grid-gap: .5em">
+  <div>input-kana</div><input-kana id=inp1></input-kana><div>input-kana カタカナのみ</div>
+  <div>input-kana maxlength=8</div><input-kana id=inp2 maxlength=8></input-kana><div>and limit 8 characters</div>
+</div>
+
+<br>
+<br>
+<input id=res placeholder="result">
+
+<script type="module">
+onload = () => {
+  inp1.onchange = () => {
+    res.value = inp1.value;
+  };
+  inp2.onchange = () => {
+    res.value = inp2.value;
+  };
+};
+</script>
+
+<hr>
+<a href=https://fukuno.jig.jp/3368>by @taisukef</a>, <a href=https://github.com/code4fukui/input-kana/>src on GitHub</a>
+
+<style>
+body {
+  margin: 3em;
+}
+input {
+  font-size: 16px;
+}
+annotate-element {
+  background-color: #fdd;
+  padding: .1em .8em;
+  font-size: 80%;
+}
+</style>
+
+</body></html>
