@@ -6,8 +6,10 @@ Deno.test("isValid", () => {
   t.assert(v.isValid("ア"));
   t.assert(v.isValid("あ"));
   t.assert(!v.isValid("a"));
-  t.assert(!v.isValid("-"));
+  t.assert(v.isValid("-")); // ng -> ok
   t.assert(!v.isValid("😍"));
+  t.assert(v.isValid("1"));
+  t.assert(v.isValid("１"));
 });
 Deno.test("normalize", () => {
   const v = new KanaValidator();
@@ -18,6 +20,12 @@ Deno.test("normalize", () => {
 });
 Deno.test("validate", () => {
   const v = new KanaValidator();
-  t.assertEquals(v.validate("アイウ3"), "アイウ");
-  t.assertEquals(v.validate("アイウ3あいう"), "アイウアイウ");
+  t.assertEquals(v.validate("アイウ3"), "アイウ3");
+  t.assertEquals(v.validate("アイウ３"), "アイウ3");
+  t.assertEquals(v.validate("アイウ3あいう"), "アイウ3アイウ");
+});
+Deno.test("symbol", () => {
+  const v = new KanaValidator();
+  t.assertEquals(v.validate("（アイウ）"), "(アイウ)");
+  t.assertEquals(v.validate("アイウ3【1】あいうA"), "アイウ3【1】アイウ");
 });

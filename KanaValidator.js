@@ -1,5 +1,6 @@
 //import { Validator } from "../input-number/Validator.js";
 import { Validator } from "https://code4fukui.github.io/input-number/Validator.js";
+import { ZenkakuAlpha } from "https://code4fukui.github.io/mojikiban/ZenkakuAlpha.js";
 
 const zenkana1 = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンァィゥェォッャュョー゛゜。、「」";
 const zenkana2 = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポヴ";
@@ -10,6 +11,8 @@ const zenhira2 = "がぎぐげござじずぜぞだぢづでどばびぶべぼ�
 const zenhira3 = "う゛";
 const zenhira = zenhira1 + zenhira2 + zenhira3;
 
+const symbol = "〇〈〉《》「」『』【】〒〓〔〕〖〗〘〙〜〝〟〠・ー　";
+const alphabet = "abcdefghijklmnopqrstuvwxyz";
 class KanaValidator extends Validator {
   isValid(c) {
     if (c == "") {
@@ -24,6 +27,16 @@ class KanaValidator extends Validator {
     if (zenhira.indexOf(c) >= 0) {
       return true;
     }
+    if (symbol.indexOf(c) >= 0) {
+      return true;
+    }
+    const c2 = ZenkakuAlpha.toHan(c);
+    if (alphabet.indexOf(c2.toLowerCase()) >= 0) {
+      return false;
+    }
+    if (ZenkakuAlpha.isHan(c2)) {
+      return true;
+    }
     return false;
   }
   normalize(c) {
@@ -36,6 +49,16 @@ class KanaValidator extends Validator {
     const n = zenhira.indexOf(c);
     if (n >= 0) {
       return zenkana[n];
+    }
+    if (symbol.indexOf(c) >= 0) {
+      return c;
+    }
+    const c2 = ZenkakuAlpha.toHan(c);
+    if (alphabet.indexOf(c2.toLowerCase()) >= 0) {
+      return "";
+    }
+    if (ZenkakuAlpha.isHan(c2)) {
+      return c2;
     }
     // todo: support う゛
     // todo: hankaku -> zenkaku
