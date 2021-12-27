@@ -1,4 +1,3 @@
-//import { Validator } from "../input-number/Validator.js";
 import { Validator } from "https://code4fukui.github.io/input-number/Validator.js";
 import { ZenkakuAlpha } from "https://code4fukui.github.io/mojikiban/ZenkakuAlpha.js";
 
