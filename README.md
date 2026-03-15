@@ -1,5 +1,7 @@
 # input-kana
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 A custom HTML input element that only accepts kana (Japanese phonetic script).
 
 ## Demo
