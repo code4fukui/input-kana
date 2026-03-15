@@ -1,17 +1,17 @@
 # input-kana
 
-A custom HTML input element that only accepts kana (Japanese phonetic script).
+カナのみ入力可能な入力ボックスです。
 
-## Demo
+## デモ
 https://code4fukui.github.io/input-kana/
 
-## Features
-- Accepts only kana characters
-- Converts half-width kana to full-width
-- Removes unsupported characters
-- Supports `maxlength` and `rows` attributes
+## 機能
+- カタカナ、ひらがな入力が可能
+- 全角英数字、記号の入力を許可
+- 入力値の整形・バリデーション
 
-## Usage
+## 使い方
+
 ```html
 <script type="module" src="https://code4fukui.github.io/input-kana/input-kana.js"></script>
 <input-kana id=inp maxlength=10></input-kana>
@@ -25,5 +25,5 @@ onload = () => {
 </script>
 ```
 
-## License
+## ライセンス
 MIT License
